@@ -1,3 +1,4 @@
+#' @export
 gg_venn<- function(overlap, ...){
 
   if (length(overlap) == 2){
