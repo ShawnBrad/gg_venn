@@ -18,28 +18,32 @@ venn_4way <- function(overlap.df, overlap, text.col = rep('black',15),title.col 
 
   labels.coordinates <- data.frame(
     v.x = c(-6,6,-3.5,3.5),
-    v.y = c(4,4,6,6),
+    v.y = c(5,5,7,7),
     names = names(overlap))
 
   venn.df <- overlap.df[-1,] %>%
     as.data.frame() %>%
     add_column(venn.coordinates)
 
-  ggplot(df, aes(x0 = x0, y0 = y0, a = a, b = b, angle = angles, fill = venn.names)) +
+ base_venn <-  ggplot(df, aes(x0 = x0, y0 = y0, a = a, b = b, angle = angles, fill = venn.names)) +
     geom_ellipse(alpha= .4)+
     annotate("text",
              x = pull(venn.df, v.x),
              y = pull(venn.df, v.y),
              label = pull(venn.df, Counts),
              size = 6,
-             color = text.col) +
-
-    annotate("text",
-             x = pull(labels.coordinates, v.x),
-             y = pull(labels.coordinates, v.y),
-             label = pull(labels.coordinates, names),
-             size = 8,
-             color = title.col) +
+             color = text.col) 
+if (label.venns){
+  base_venn = base_venn +
+  annotate("text",
+           x = pull(labels.coordinates, v.x),
+           y = pull(labels.coordinates, v.y),
+           label = pull(labels.coordinates, names),
+           size = 8,
+           color = title.col)
+  }
+ 
+ base_venn = base_venn +
     theme_void()+
     theme(legend.position = 'none') %>%
     return()
