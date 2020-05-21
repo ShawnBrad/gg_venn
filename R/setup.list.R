@@ -1,6 +1,8 @@
 #' @import tidyverse
 #' @import limma
 #' @importFrom magrittr %>%
+#' 
+#' @export
 
 setup.list <- function(overlap){
 
