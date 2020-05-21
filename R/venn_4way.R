@@ -2,9 +2,16 @@
 #' @import ggforce
 #' @importFrom magrittr %>%
 
-venn_4way <- function(overlap.df, overlap, text.col = rep('black',15),title.col = 'black'){
+venn_4way <- function(overlap.df, overlap, label.size, label.col ){
 
-  if( length(text.col) != 15) (text.col = rep(text.col[1],15))
+  if( length(label.col) < 15) {
+    label.col = rep(label.col[1],15)
+    warning('insufficent colors supplied, using the first supplied color only',call. = F)
+    
+  } else if( length(label.col) > 15) {
+    label.col = label.col[1:15]
+  }
+  
   df <- data.frame(angles = c(5*pi/6, pi/6, 11*pi/6,7*pi/6),
                    x0 = c(-2,2,0,0),
                    y0 =  c(0,0,2,2),
@@ -15,11 +22,6 @@ venn_4way <- function(overlap.df, overlap, text.col = rep('black',15),title.col 
   venn.coordinates <- data.frame(
     v.x = c(3,-3,0,5,4,3.5,2,-5,-3.5,-4,-2,0,-1.75,1.75,0),
     v.y = c(5,5,3.5,2,3.2,0,2,2,0,3.2,2,-2.5,-1,-1,.5))
-
-  labels.coordinates <- data.frame(
-    v.x = c(-6,6,-3.5,3.5),
-    v.y = c(5,5,7,7),
-    names = names(overlap))
 
   venn.df <- overlap.df[-1,] %>%
     as.data.frame() %>%
@@ -32,20 +34,11 @@ venn_4way <- function(overlap.df, overlap, text.col = rep('black',15),title.col 
              y = pull(venn.df, v.y),
              label = pull(venn.df, Counts),
              size = 6,
-             color = text.col) 
-if (label.venns){
-  base_venn = base_venn +
-  annotate("text",
-           x = pull(labels.coordinates, v.x),
-           y = pull(labels.coordinates, v.y),
-           label = pull(labels.coordinates, names),
-           size = 8,
-           color = title.col)
-  }
+             color = label.col) 
  
+
  base_venn = base_venn +
-    theme_void()+
-    theme(legend.position = 'none') %>%
+    theme_void() %>%
     return()
 }
 
