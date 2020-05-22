@@ -1,3 +1,7 @@
+#' @import tidyverse
+#' @importFrom magrittr %>%
+#' 
+#' @export
 make.table <- function(overlap){
   
   # get all genes present in list
