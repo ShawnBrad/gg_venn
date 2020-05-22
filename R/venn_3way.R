@@ -1,10 +1,7 @@
-#' #' @import ggplot2
-#' #' @import ggforce
-#' #' @importFrom magrittr %>%
-#' 
-#' 
-#' 
-#' 
+#' @import ggplot2
+#' @import ggforce
+#' @importFrom magrittr %>%
+
 venn_3way <- function(overlap.df, overlap, label.size, label.col){
   len.list <- c(length(unlist(overlap[[1]])), length(unlist(overlap[[2]])), length(unlist(overlap[[3]]))) # count items
   
