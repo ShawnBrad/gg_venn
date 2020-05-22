@@ -33,6 +33,7 @@ venn_4way <- function(overlap.df, overlap, label.size, label.col ){
              x = pull(venn.df, v.x),
              y = pull(venn.df, v.y),
              label = pull(venn.df, Counts),
+             #label = c('d','c','cd','b','bd','bc','bcd','a','ad','ac','acd','ab','abd','abc','abcd'),
              size = 6,
              color = label.col) 
  
