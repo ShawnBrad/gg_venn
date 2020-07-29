@@ -175,8 +175,6 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
       
     }
   
-
-
   df.venn <- data.frame(x = c(x1,x2,x3),
                         y = c(y1,y2,y3),
                         groups = names(overlap))
@@ -186,9 +184,6 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
                y.l =  label.cords[,2],
                label.l = overlap.df[-1,4])#,
                #label.l = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ))
-  
-  
-  
 
  
   base_venn <-   ggplot(df.venn, aes(x0 = x, y0 = y, r =  len.list, fill = groups)) +
@@ -196,8 +191,8 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
   annotate("text",
            x =  c.labels$x.l ,
            y =   c.labels$y.l,
-           #label =  c.labels$label.l ,
-           label = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ),
+           label =  c.labels$label.l ,
+           #label = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ),
           size = label.size,
            color = label.col)
 

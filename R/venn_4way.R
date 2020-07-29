@@ -4,7 +4,7 @@
 
 venn_4way <- function(overlap.df, overlap, label.size, label.col ){
 
-  if( length(label.col) < 15) {
+  if( length(label.col) < 15 &  length(label.col) != 1) {
     label.col = rep(label.col[1],15)
     warning('insufficent colors supplied, using the first supplied color only',call. = F)
     
@@ -34,7 +34,7 @@ venn_4way <- function(overlap.df, overlap, label.size, label.col ){
              y = pull(venn.df, v.y),
              label = pull(venn.df, Counts),
              #label = c('d','c','cd','b','bd','bc','bcd','a','ad','ac','acd','ab','abd','abc','abcd'),
-             size = 6,
+             size =label.size,
              color = label.col) 
  
 

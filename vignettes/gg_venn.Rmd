@@ -1,0 +1,97 @@
+---
+title: "gg_venn"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gg_venn}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggvenn)
+```
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
+## Quick Start
+
+### Input
+
+ggvenn was created to draw simple venn diagrams using ggplot. Since the resulting plots are grid based graphics, the plots can be further customized using traditional ggplot methods.
+
+The `gg_venn()` function takes a named list as an input and calculates the overlap among the lists and plots an appropriate venn diagram. Currently up to a 4-way venn diagram is supported. 
+
+```{r}
+numbers <- list(evens = c(2,4,6), primes = c(2,3,5,7),
+                odds = c(1,3,5,7), ordered = c(1,2,3,4,5,6,7,8))
+```
+
+```{r two_way, fig.height=6, fig.width=8}
+gg_venn(numbers[c('evens','primes')]) 
+```
+
+
+```{r three_way, eval=FALSE, include=FALSE, fig.height=6, fig.width=8}
+gg_venn(numbers[c('evens','primes', 'odds')]) 
+
+```
+
+By default, the size of the circles will ve scaled to represent the lengths of each item in the list for 2 and 3 way comparisons 
+
+
+```{r four_way, fig.height=6, fig.width=8}
+gg_venn(numbers) 
+```
+
+### Customization
+
+#### Label Colors
+The color of the labels can be changed by passing a color or vector of colors of appropriate length to the **label.col** argument. 
+
+|----|----|
+|2 way| 3 |
+|3 way| x |
+|4 way| 15 |
+
+```{r fig.height=6, fig.width=8}
+gg_venn(numbers, label.col = 'red')
+```
+
+#### Label sizes
+The size of the labels can be set using the  **label.size** argument. 
+
+```{r fig.height=6, fig.width=8}
+gg_venn(numbers, label.size = 10)
+```
+
+##### ggplot customizations
+###### Adjusting venn colors
+```{r}
+gg_venn(numbers) +
+  scale_fill_manual(values = c('red','grey','blue','green'))
+```
+
+###### Add labels to venns 
+The annotate function can be used to add labels to the individual circles of the venn diagrams. x and y coordinates can be determined by adjusting the plot theme to show the x and y axis
+
+```{r fig.height=6, fig.width=8}
+gg_venn(numbers[c('evens','primes')]) +
+  theme_grey()+
+  annotate("text",
+           x =  c(-.75, 1),
+           y =   c(1.25,1),
+           label =  c('Evens', 'Odds'),
+           size = 10)
+           
+ 
+```

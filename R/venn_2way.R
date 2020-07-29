@@ -5,7 +5,7 @@
 venn_2way <- function(overlap.df, overlap, label.col,label.size ){
 
   
-  if( length(label.col) < 3) {
+  if( length(label.col) < 3 &  length(label.col) != 1) {
     label.col = rep(label.col[1],3)
     warning('insufficent colors supplied, using the first supplied color only',call. = F)
     
@@ -25,7 +25,7 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
   # create df to draw circles
   df.venn <- data.frame(x = c(0, 1)- min(len.list)/4,
                         y = c(0, 0),
-                        labels = names(overlap))
+                        venn.names = names(overlap))
 
 
   overlap.df <- as.data.frame(overlap.df[-1,]) %>%
@@ -38,7 +38,7 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
 
 
 # plot venn
-  base_venn <- ggplot(df.venn, aes(x0 = x, y0 = y, r = len.list, fill = labels)) +
+  base_venn <- ggplot(df.venn, aes(x0 = x, y0 = y, r = len.list, fill = venn.names)) +
     geom_circle(alpha = .5, size = 1, colour = 'grey50') +
     annotate("text", x = overlap.df$x, y = overlap.df$y, 
              label = overlap.df$Counts[c(1,3,2)], 
