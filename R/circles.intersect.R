@@ -1,6 +1,6 @@
 
 # create function to check where the circles intersect 
-circles.intersect <- function(r, x,y ){
+circles.intersect <- function(r, x, y ){
   # circle radius
   r0 = r[1] 
   r1 = r[2]
@@ -13,7 +13,7 @@ circles.intersect <- function(r, x,y ){
   
   d <- abs(x1 - x0)
  
-  # find interct of circles using triangles method
+  # find intersect of circles using triangles method
 
   a = ( r0^2 - r1^2 + d^2 )/2*d 
   h = sqrt( r0^2 -a^2 )
