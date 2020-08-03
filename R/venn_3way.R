@@ -20,7 +20,10 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
       r1 = len.list[1]
       r2 = len.list[2]
       r3 = len.list[3]
-      # if circle 1 = ref 
+      
+      
+      
+ ######     # if circle 1 = ref ######
       if (len.list[1] == max(len.list)){
         # set 2nd circle to 3
         
@@ -60,18 +63,18 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
           
           label.cords <- rbind(  c(x3 , y3 + cr), #c =
                                  c(x2 + r2/2, y2 ), # b = 
-                                 c(x3 + cr, y3 ), #bc = 
+                                 c(x3 + cr, y3 - r3/8 ), #bc = 
                                  c(x1 -r1/2, y1 ), # a = .
                                  c(x3 - cr, y3 ), # ac = .
                                  c(x2 - r2/2, y3 - r3*1.2), #ab = 
-                                 c(x3 , y3 - cr)) # abc = 
+                                 c(x3 -r3/8 , y3 - cr)) # abc = 
           
           
         }
       }
       
       
-      # if circle 2 = ref 
+######      # if circle 2 = ref ######
       if (len.list[2] == max(len.list)){
         
         # set 2nd circle to 3
@@ -113,19 +116,19 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
           
             
           label.cords <- rbind(  c(x3, y3+ cr ), #c =
-                              c(x2 - x2/2, y2), # b = 
+                              c(x2 - r2/2, y2), # b = 
                                 c(x3 -cr, y3 ), #bc =
                                c(x1 + r1/2, y1), # a = 
-                               c(x3 +cr, y3 ), # ac = 
-                               c(x1 - r1/2, y1), #ab = 
-                               c(x3 , y3 - cr)) # abc = 
+                               c(x3 +cr, y3 - r3/8 ), # ac = 
+                               c(x1 - r1/2, y1 - r1/2), #ab = 
+                               c(x3 -r3/8 , y3 - cr)) # abc = 
          
         } 
         
       }
       
       
-      # if circle 3 = ref 
+#####      # if circle 3 = ref ######
       if (len.list[3] == max(len.list)){
         
         # second to 2 
@@ -143,10 +146,10 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
           
           label.cords <- rbind(  c(x3 - r3/2, y3 ), #c =
                                  c(x2 + r2/2, y2), # b = .
-                                 c(x2 - r2/2, y2), #bc = .
+                                 c(x2 - r2/2, y2 -r2/8), #bc = .
                                  c(x1 , y1+ cr ), # a = 
                                  c(x1 - cr, y1 ), # ac = .
-                                 c(x1 +cr, y1 ), #ab = .
+                                 c(x1 +cr *1.25, y1 -r1/8 ), #ab = .
                                  c(x1, y1 - cr)) # abc = .
           
         } else {# set 2nd to 1 
@@ -163,18 +166,18 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
           
           cr = sqrt(r2/2)/2
           
-          label.cords <- rbind(  c(x3 - r3/2, y2 - r2*1.5 ), #c =
+          label.cords <- rbind(  c(x3 - r3/2, y1 ), #c =
                                  c(x2 , y2 + cr), # b = .
-                                 c(x2 + cr, y2 ), #bc = .
+                                 c(x2 + cr, y2 -r2/8 ), #bc = .
                                  c(x1 + r1/2, y1 ), # a = 
-                                 c(x1 - r1/2, y2 - 1.5*r2 ), # ac = .
+                                 c(x1 - r1/2, y2 - 1.25*r2 ), # ac = .
                                  c(x2 - cr, y2 ), #ab = .
-                                 c(x2 , y2 - cr)) # abc = .
+                                 c(x2- r2/8 , y2 - cr)) # abc = .
         }
       }
       
     }
-  
+######## plot ##############
   df.venn <- data.frame(x = c(x1,x2,x3),
                         y = c(y1,y2,y3),
                         groups = names(overlap))
@@ -191,10 +194,10 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
   annotate("text",
            x =  c.labels$x.l ,
            y =   c.labels$y.l,
-           label =  c.labels$label.l ,
-           #label = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ),
+           #label =  c.labels$label.l ,
+           label = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ),
           size = label.size,
-           color = label.col)
+           color = 'blue')#label.col)
 
   base_venn = base_venn +
     theme_void() %>%

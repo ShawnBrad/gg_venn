@@ -50,11 +50,6 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
   overlap.df <- as.data.frame(overlap.df[-1,]) %>%
     mutate(x =  x.labs.cord, y = c(0, 0, 0))
 
-  # reverse x positions depending on which list is larger
-  # if(len.list[1] < len.list[2]){
-  #   overlap.df$x = .95+ (overlap.df$x * -1)
-  # }
-
 
 # plot venn
   base_venn <- ggplot(df.venn, aes(x0 = x, y0 = y, r = len.list, fill = venn.names)) +

@@ -76,7 +76,7 @@ gg_venn(numbers, label.size = 10)
 
 ##### ggplot customizations
 ###### Adjusting venn colors
-```{r}
+```{r fig.height=6, fig.width=8}
 gg_venn(numbers) +
   scale_fill_manual(values = c('red','grey','blue','green'))
 ```
