@@ -6,6 +6,15 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
   len.list <- c(length(unlist(overlap[[1]])), length(unlist(overlap[[2]])), length(unlist(overlap[[3]]))) # count items
   
   
+  if( length(label.col) < 7 &  length(label.col) != 1) {
+    label.col = rep(label.col[1],7)
+    warning('insufficent colors supplied, using the first supplied color only',call. = F)
+    
+  } else if( length(label.col) > 7) {
+    label.col = label.col[1:7]
+  }
+  
+  
   if (len.list[1] == len.list[2] & len.list[2] == len.list[3]){
     r1 = r2 = r3 = 1
     x1 = 0 ; y1 = 0;
@@ -194,10 +203,10 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
   annotate("text",
            x =  c.labels$x.l ,
            y =   c.labels$y.l,
-           #label =  c.labels$label.l ,
-           label = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ),
-          size = label.size,
-           color = 'blue')#label.col)
+           label =  c.labels$label.l ,
+           #label = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ),
+            size = label.size,
+           color = label.col)
 
   base_venn = base_venn +
     theme_void() %>%
