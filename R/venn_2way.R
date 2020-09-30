@@ -30,7 +30,7 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
   # create df to draw circles
   df.venn <- data.frame(x =  x.cords,
                         y = y.cords,
-                        venn.names = names(overlap))
+                        venn.names = names(overlap)[c(2,1)])
   
   
   intercept <- circles.intersect(r = len.list, x = x.cords, y = y.cords)
@@ -57,7 +57,7 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
     
     
     annotate("text", x = overlap.df$x, y = overlap.df$y, 
-             label = overlap.df$Counts[c(1,3,2)], 
+             label = overlap.df$Counts[c(1,2,3)], 
              size = 6, color = label.col[c(1,2,3)])
 
   base_venn = base_venn +
