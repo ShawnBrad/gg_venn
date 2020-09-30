@@ -2,7 +2,7 @@
 #' @import ggforce
 #' @importFrom magrittr %>%
 
-venn_2way <- function(overlap.df, overlap, label.col,label.size ){
+venn_2way <- function(overlap.df, overlap, label.col,label.size , line.width ){
 
   
   if( length(label.col) < 3 &  length(label.col) != 1) {
@@ -53,7 +53,7 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
 
 # plot venn
   base_venn <- ggplot(df.venn, aes(x0 = x, y0 = y, r = len.list, fill = venn.names, color = venn.names)) +
-    geom_circle(alpha = .5, size = 1, colour = 'grey50') +
+    geom_circle(alpha = .5, size = line.width) +
     
     
     annotate("text", x = overlap.df$x, y = overlap.df$y, 

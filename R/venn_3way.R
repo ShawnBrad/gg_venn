@@ -2,7 +2,7 @@
 #' @import ggforce
 #' @importFrom magrittr %>%
 
-venn_3way <- function(overlap.df, overlap, label.size, label.col){
+venn_3way <- function(overlap.df, overlap, label.size, label.col, line.width ){
   len.list <- c(length(unlist(overlap[[1]])), length(unlist(overlap[[2]])), length(unlist(overlap[[3]]))) # count items
   
   
@@ -198,8 +198,8 @@ venn_3way <- function(overlap.df, overlap, label.size, label.col){
                #label.l = c('c', 'b', 'bc', 'a',  'ac', 'ab', 'abc' ))
 
  
-  base_venn <-   ggplot(df.venn, aes(x0 = x, y0 = y, r =  len.list, fill = venn.names)) +
-  geom_circle(alpha = .5, size = 1, colour = 'grey50')+
+  base_venn <-   ggplot(df.venn, aes(x0 = x, y0 = y, r =  len.list, fill = venn.names, color = venn.names)) +
+  geom_circle(alpha = .5, size = line.width)+
   annotate("text",
            x =  c.labels$x.l ,
            y =   c.labels$y.l,

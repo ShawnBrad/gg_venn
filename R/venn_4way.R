@@ -27,8 +27,8 @@ venn_4way <- function(overlap.df, overlap, label.size, label.col ){
     as.data.frame() %>%
     add_column(venn.coordinates)
 
- base_venn <-  ggplot(df, aes(x0 = x0, y0 = y0, a = a, b = b, angle = angles, fill = venn.names)) +
-    geom_ellipse(alpha= .4)+
+ base_venn <-  ggplot(df, aes(x0 = x0, y0 = y0, a = a, b = b, angle = angles, fill = venn.names, color = venn.names)) +
+    geom_ellipse(alpha= .4, size = line.width)+
     annotate("text",
              x = pull(venn.df, v.x),
              y = pull(venn.df, v.y),
