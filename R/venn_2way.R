@@ -52,7 +52,7 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size ){
 
 
 # plot venn
-  base_venn <- ggplot(df.venn, aes(x0 = x, y0 = y, r = len.list, fill = venn.names)) +
+  base_venn <- ggplot(df.venn, aes(x0 = x, y0 = y, r = len.list, fill = venn.names, color = venn.names)) +
     geom_circle(alpha = .5, size = 1, colour = 'grey50') +
     
     
