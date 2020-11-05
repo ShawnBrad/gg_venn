@@ -23,14 +23,14 @@ gg_venn<- function(overlap,  label.col = rep('black',15),label.size = 6, line.wi
     
   } else if (length(overlap) == 3){
       setup.list(overlap = overlap) %>%
-        venn_3way(overlap = overlap, label.col  = label.col ,label.size = label.size) %>%
+        venn_3way(overlap = overlap, label.col  = label.col ,label.size = label.size, line.width = line.width) %>%
         return()
       
       
 
   } else if (length(overlap) == 4){
     setup.list(overlap = overlap) %>%
-      venn_4way(overlap = overlap,label.col  = label.col, label.size = label.size) %>%
+      venn_4way(overlap = overlap,label.col  = label.col, label.size = label.size, line.width = line.width) %>%
       return()
   }
 }
