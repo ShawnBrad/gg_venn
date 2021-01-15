@@ -57,10 +57,10 @@ venn_2way <- function(overlap.df, overlap, label.col,label.size , line.width ){
     
     
     annotate("text", x = overlap.df$x, y = overlap.df$y, 
-             label = overlap.df$Counts[c(1,2,3)], 
+             label = overlap.df$Counts[c(1,3,2)], 
              size = 6, color = label.col[c(1,2,3)])
 
-  base_venn = base_venn +
+  base_venn = base_venn +   
     theme_void() %>%
     return() 
 }
