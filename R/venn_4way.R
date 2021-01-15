@@ -2,7 +2,7 @@
 #' @import ggforce
 #' @importFrom magrittr %>%
 
-venn_4way <- function(overlap.df, overlap, label.size, label.col ){
+venn_4way <- function(overlap.df, overlap, label.size, label.col, line.width ){
 
   if( length(label.col) < 15 &  length(label.col) != 1) {
     label.col = rep(label.col[1],15)
